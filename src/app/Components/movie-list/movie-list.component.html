@@ -1,7 +1,15 @@
-<form (submit)="searchMovies()">
-    <input type="submit">
+<form #searchForm="ngForm" (submit)="searchMovies(searchForm.form.value)">
+    <mat-card>
+        <mat-form-field>
+            <mat-label>Movie Name</mat-label>
+            <input matInput placeholder="Enter Movie Name to Search" name="name" ngModel>
+        </mat-form-field>
+        <button mat-raised-button color="primary" type="submit">Search</button>
+        <button mat-raised-button type="reset">Clear</button>
+    </mat-card>
 </form>
-<hr/>
 <div class="movie-list">
     <movie [Movie]="mv" *ngFor="let mv of movies"></movie>
 </div>
+
+<mat-card *ngIf="searchForm.submitted && movies.length == 0" style="text-align: center;">No Match Found</mat-card>

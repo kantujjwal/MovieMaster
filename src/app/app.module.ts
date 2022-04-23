@@ -13,6 +13,8 @@ import { MovieComponent } from './Components/movie/movie.component';
 import { MovieListComponent } from './Components/movie-list/movie-list.component';
 import { MovieDetailComponent } from './Components/movie-detail/movie-detail.component';
 import { MovieEditComponent } from './Components/movie-edit/movie-edit.component';
+import { FormsModule } from '@angular/forms';
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -26,13 +28,14 @@ import { MovieEditComponent } from './Components/movie-edit/movie-edit.component
     MovieEditComponent
   ],
   imports: [
+    FormsModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [{provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'legacy'}}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

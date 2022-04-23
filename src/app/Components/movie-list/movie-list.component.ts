@@ -15,10 +15,10 @@ export class MovieListComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  searchMovies(){
+  searchMovies(value: any){
     this.movieService.getMovies().subscribe((data: any)=>
     {
-      this.movies = data;
+      this.movies = data.filter((x: any)=>x.name.toLowerCase() == value.name.toLowerCase());
     });
   }
 }
