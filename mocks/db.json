@@ -1,0 +1,27 @@
+{
+    "Movies": [{
+        "id": 1,
+        "name": "Shole",
+        "logo": "https://material.angular.io/assets/img/examples/shiba1.jpg",
+        "bannerImg": "https://material.angular.io/assets/img/examples/shiba2.jpg",
+        "releaseDate": "01/01/1980",
+        "tagLine": "Sholeeeee",
+        "description": "description description description description description description description description description description description description description description description description description description description description "
+    }, {
+        "id": 2,
+        "name": "Shole",
+        "logo": "https://material.angular.io/assets/img/examples/shiba1.jpg",
+        "bannerImg": "https://material.angular.io/assets/img/examples/shiba2.jpg",
+        "releaseDate": "01/01/1980",
+        "tagLine": "Sholeeeee",
+        "description": "description description description description description description description description description description description description description description description description description description description description "
+    }, {
+        "id": 3,
+        "name": "Shole",
+        "logo": "https://material.angular.io/assets/img/examples/shiba1.jpg",
+        "bannerImg": "https://material.angular.io/assets/img/examples/shiba2.jpg",
+        "releaseDate": "01/01/1980",
+        "tagLine": "Sholeeeee",
+        "description": "description description description description description description description description description description description description description description description description description description description description "
+    }]
+}

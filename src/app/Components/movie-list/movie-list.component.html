@@ -1,0 +1,7 @@
+<form (submit)="searchMovies()">
+    <input type="submit">
+</form>
+<hr/>
+<div class="movie-list">
+    <movie [Movie]="mv" *ngFor="let mv of movies"></movie>
+</div>

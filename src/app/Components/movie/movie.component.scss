@@ -1,0 +1,36 @@
+.example-card {
+    max-width: 400px;
+}
+
+.example-header-image {
+    img {
+        height: 100%;
+        border-radius: 50%;
+        width: 100%;
+    }
+}
+
+.mat-card {
+    width: 300px;
+    height: 450px;
+    display: flex;
+    flex-direction: column;
+}
+
+.mat-card-header {
+    display: flex;
+    flex-direction: row;
+    flex-shrink: 0;
+}
+
+.mat-card-content {
+    flex-grow: 1;
+    overflow: auto;
+    margin: 0;
+    .banner {}
+}
+
+.mat-card-actions {
+    margin: 0;
+    padding: 8px;
+}
