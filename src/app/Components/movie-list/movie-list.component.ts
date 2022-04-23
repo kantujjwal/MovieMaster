@@ -18,7 +18,7 @@ export class MovieListComponent implements OnInit {
   searchMovies(value: any){
     this.movieService.getMovies().subscribe((data: any)=>
     {
-      this.movies = data.filter((x: any)=>x.name.toLowerCase() == value.name.toLowerCase());
+      this.movies = data.filter((x: any)=>x.title.toLowerCase().trim() == value.name.toLowerCase().trim());
     });
   }
 }
