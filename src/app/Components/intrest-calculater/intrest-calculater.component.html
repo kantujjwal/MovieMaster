@@ -1,0 +1,60 @@
+<h1 style="text-align: center;">Account Closure Plan</h1>
+<form #calcForm="ngForm" (submit)="calc(calcForm.form.value)" (reset)="dataSource = []">
+    <mat-card>
+        <mat-form-field>
+            <mat-label>Principal Amaount</mat-label>
+            <input matInput placeholder="Enter Principal Amaount" name="principalAmount" ngModel>
+        </mat-form-field>
+        &nbsp;
+        <mat-form-field>
+            <mat-label>Monthly Intrest</mat-label>
+            <input matInput placeholder="Enter Monthly Intrest" name="mnthlyIntrest" ngModel>
+        </mat-form-field>
+        &nbsp;
+        <mat-form-field>
+            <mat-label>Mnthly Payment</mat-label>
+            <input matInput placeholder="Enter Mnthly Payment" name="mnthlyPayment" ngModel>
+        </mat-form-field>
+        <br/>
+        <button mat-raised-button color="primary" type="submit" style="margin: 0 4px">Calculate</button>
+        <button mat-raised-button type="reset">Reset</button>
+    </mat-card>
+</form>
+
+<mat-card>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+        <ng-container matColumnDef="sl">
+            <th mat-header-cell *matHeaderCellDef> Sl. </th>
+            <td mat-cell *matCellDef="let element"> {{element.sl}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="principalAmount">
+            <th mat-header-cell *matHeaderCellDef> Principal Amount </th>
+            <td mat-cell *matCellDef="let element"> {{element.principalAmount}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="monthlyPaid">
+            <th mat-header-cell *matHeaderCellDef> Monthly Paid </th>
+            <td mat-cell *matCellDef="let element"> {{element.monthlyPaid}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="balance">
+            <th mat-header-cell *matHeaderCellDef> Balance </th>
+            <td mat-cell *matCellDef="let element"> {{element.balance}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="intrestAmount">
+            <th mat-header-cell *matHeaderCellDef> Intrest Amount </th>
+            <td mat-cell *matCellDef="let element"> {{element.intrestAmount}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="remainingAmount">
+            <th mat-header-cell *matHeaderCellDef> Remaining Amount </th>
+            <td mat-cell *matCellDef="let element"> {{element.remainingAmount}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</mat-card>

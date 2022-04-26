@@ -15,6 +15,7 @@ import { MovieDetailComponent } from './Components/movie-detail/movie-detail.com
 import { MovieEditComponent } from './Components/movie-edit/movie-edit.component';
 import { FormsModule } from '@angular/forms';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
+import { IntrestCalculaterComponent } from './Components/intrest-calculater/intrest-calculater.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
     MovieComponent,
     MovieListComponent,
     MovieDetailComponent,
-    MovieEditComponent
+    MovieEditComponent,
+    IntrestCalculaterComponent
   ],
   imports: [
     FormsModule,

@@ -9,7 +9,8 @@ import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 export class LandingPageComponent implements OnInit, OnDestroy {
   mobileQuery: MediaQueryList;
 
-  menuNav = [{name:"Latest Movies", link:'latest-movies'}, {name:"Contact Us", link:'contactus'}, {name:"Movie List", link:'movie-list'}]
+  menuNav = [{name:"Latest Movies", link:'latest-movies'}, {name:"Contact Us", link:'contactus'},
+  {name:"Movie List", link:'movie-list'}, {name:"Intrest Calcultor", link:'intrest-calc'}]
 
   private _mobileQueryListener: () => void;
 

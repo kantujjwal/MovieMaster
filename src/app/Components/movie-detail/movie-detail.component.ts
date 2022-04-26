@@ -4,7 +4,7 @@ import { Movie } from 'src/app/Models/movie.modal';
 import { MovieService } from 'src/app/Services/movie.service';
 
 @Component({
-  selector: 'app-movie-detail',
+  selector: 'movie-detail',
   templateUrl: './movie-detail.component.html',
   styleUrls: ['./movie-detail.component.scss']
 })
@@ -22,6 +22,14 @@ export class MovieDetailComponent implements OnInit {
         this.movie = data;
       });
     });
+  }
+
+  getRating(r:number[]|undefined){
+    return (r && r.length>0)?r.reduce((accumulator, curr) => accumulator + curr) / r.length : 0;
+  }
+
+  toInt(v:number){
+    return Math.trunc(v);
   }
 
 }
