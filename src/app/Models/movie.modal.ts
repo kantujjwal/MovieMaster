@@ -22,5 +22,5 @@ export interface Movie{
     storyline: string,
     actors: string[],
     imdbRating: number,
-    posterurl: string
+    posterurl: string[]
 }

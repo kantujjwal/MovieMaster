@@ -34,7 +34,7 @@ export class MovieComponent implements OnInit {
   }
 
   setDefImg(movie: Movie){
-    movie.posterurl = "https://media.gettyimages.com/vectors/cinema-poster-with-cola-filmstrip-and-clapper-vector-vector-id1244034031?s=612x612";
+    movie.posterurl = ["https://media.gettyimages.com/vectors/cinema-poster-with-cola-filmstrip-and-clapper-vector-vector-id1244034031?s=612x612"];
   }
 
 

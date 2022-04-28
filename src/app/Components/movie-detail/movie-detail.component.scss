@@ -1,7 +1,8 @@
 .banner-img {
     display: block;
     width: 520px;
-    height: auto;
+    height: 690px;
+    transition: background-image 1s ease-in-out;
 }
 
 #back-btn {
@@ -12,4 +13,15 @@
 
 .genres-list {
     padding-left: 70px !important;
+}
+
+.boolet {
+    padding: 0 6px;
+    cursor: pointer;
+    font-size: 48px;
+    color: skyblue;
+}
+
+.boolet.active {
+    color: darkblue !important;
 }
