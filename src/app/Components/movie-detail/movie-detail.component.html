@@ -1,8 +1,10 @@
 <div style="display: inline-flex;">
-
+    <button id="back-btn" mat-fab color="primary" (click)="gotoBack()">
+        <mat-icon>backspace</mat-icon>
+      </button>
     <div>
         <h2 style="text-align: center;">{{movie?.title}}</h2>
-        <img class="banner-img" [src]="movie?.posterurl" alt="Image Not Found">
+        <img class="banner-img" [src]="movie?.posterurl" (error)="setDefImg()">
         <mat-chip-list>
             <mat-chip color="primary" *ngFor="let g of movie?.genres">{{g}}</mat-chip>
         </mat-chip-list>

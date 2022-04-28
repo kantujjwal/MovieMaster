@@ -1,3 +1,9 @@
 .banner-img {
     height: 500px;
 }
+
+#back-btn {
+    position: fixed;
+    bottom: 20px;
+    z-index: 99;
+}

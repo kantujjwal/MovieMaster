@@ -10,7 +10,7 @@ export class LandingPageComponent implements OnInit, OnDestroy {
   mobileQuery: MediaQueryList;
 
   menuNav = [{name:"Latest Movies", link:'latest-movies'}, {name:"Contact Us", link:'contactus'},
-  {name:"Movie List", link:'movie-list'}, {name:"Intrest Calcultor", link:'intrest-calc'}]
+  {name:"Movie List", link:'movie-list'}, {name:"Add Movie", link:'new-movie'}, {name:"Intrest Calcultor", link:'intrest-calc'}]
 
   private _mobileQueryListener: () => void;
 
@@ -24,5 +24,9 @@ export class LandingPageComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
+  }
+
+  clearOldFilterData(){
+    localStorage.removeItem('filterData');
   }
 }

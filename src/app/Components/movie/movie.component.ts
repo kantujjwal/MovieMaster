@@ -1,6 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { Movie } from 'src/app/Models/movie.modal';
+import { MovieService } from 'src/app/Services/movie.service';
 
 @Component({
   selector: 'movie',
@@ -9,7 +10,9 @@ import { Movie } from 'src/app/Models/movie.modal';
 })
 export class MovieComponent implements OnInit {
   @Input('Movie') Movie: Movie | undefined;
-  constructor(private _router: Router) { }
+  @Output() MovieDeleted = new EventEmitter<string>();
+  constructor(private _router: Router,
+    private movieService: MovieService) { }
 
   ngOnInit(): void {
   }
@@ -20,6 +23,14 @@ export class MovieComponent implements OnInit {
 
   gotoMovieEdit(id: string){
     this._router.navigate(['/movie-edit',id]);
+  }
+
+  deleteMovie(id: string){
+    this.movieService.deleteMovie(id).subscribe(res=>
+      {
+        this.MovieDeleted.emit(id);
+      }
+      );
   }
 
   setDefImg(movie: Movie){

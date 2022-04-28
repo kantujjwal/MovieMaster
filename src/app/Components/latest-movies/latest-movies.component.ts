@@ -14,8 +14,19 @@ export class LatestMoviesComponent implements OnInit {
   ngOnInit(): void {
     this.movieService.getMovies().subscribe((data: any)=>
     {
-      this.latestMovies = data;
+      this.latestMovies = data.sort((a:any,b:any)=>
+      {
+        return b.releaseDate.localeCompare(a.releaseDate);
+      });
     });
+  }
+
+  movieDeleted(id:string){
+    const index = this.latestMovies.findIndex(x=>x.id===id);
+
+    if (index >= 0) {
+      this.latestMovies.splice(index, 1);
+    }
   }
 
 }

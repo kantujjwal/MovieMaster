@@ -13,6 +13,7 @@ const routes: Routes = [{ path:'latest-movies', component: LatestMoviesComponent
 { path:'intrest-calc', component: IntrestCalculaterComponent },
 { path:'movie-details/:id', component: MovieDetailComponent },
 { path:'movie-edit/:id', component: MovieEditComponent },
+{ path:'new-movie', component: MovieEditComponent },
 { path:'', redirectTo: '/latest-movies', pathMatch:'full'},
 { path:'*', redirectTo: 'latest-movies'}];
 

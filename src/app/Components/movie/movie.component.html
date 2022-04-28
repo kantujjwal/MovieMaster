@@ -1,12 +1,12 @@
-<mat-card class="example-card" *ngIf="Movie">
-    <mat-card-header>
+<mat-card *ngIf="Movie">
+    <mat-card-header (click)="gotoMovieDetails(Movie.id)" class="hand">
         <div mat-card-avatar class="example-header-image">
             <img [src]="Movie.posterurl" (error)="setDefImg(Movie)">
         </div>
         <mat-card-title>{{Movie.title}}</mat-card-title>
         <mat-card-subtitle>{{Movie.year}}</mat-card-subtitle>
     </mat-card-header>
-    <img class="banner" [src]="Movie.posterurl" (error)="setDefImg(Movie)" alt="Photo of a {{Movie.title}}">
+    <img class="banner hand" [src]="Movie.posterurl" (error)="setDefImg(Movie)" alt="Photo of a {{Movie.title}}" (click)="gotoMovieDetails(Movie.id)">
     <mat-card-content>
         <p *ngIf="Movie.storyline.length<=220">{{Movie.storyline}}</p>
         <p *ngIf="Movie.storyline.length>220">{{Movie.storyline | slice:0:220}}...</p>
@@ -15,6 +15,7 @@
         <mat-card-actions>
             <button mat-raised-button color="primary" (click)="gotoMovieDetails(Movie.id)">Details</button>
             <button mat-raised-button (click)="gotoMovieEdit(Movie.id)">Edit</button>
+            <button style="float: right;" mat-raised-button color="warn" (click)="deleteMovie(Movie.id)">Delete</button>
         </mat-card-actions>
     </mat-card-footer>
 </mat-card>

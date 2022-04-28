@@ -1,15 +1,67 @@
-<form #searchForm="ngForm" (submit)="searchMovies(searchForm.form.value)">
-    <mat-card>
-        <mat-form-field>
-            <mat-label>Movie Name</mat-label>
-            <input matInput placeholder="Enter Movie Name to Search" name="name" ngModel>
-        </mat-form-field>
-        <button mat-raised-button color="primary" type="submit" style="margin: 0 4px">Search</button>
-        <button mat-raised-button type="reset">Clear</button>
+<form #searchForm="ngForm" (submit)="searchMovies(searchForm.form.value)" (reset)="reset()">
+    <mat-card class="search-card">
+        <div style="max-width: 500px;">
+            <mat-form-field>
+                <mat-label>Title</mat-label>
+                <input matInput placeholder="Enter Movie Title to Search" name="title" ngModel>
+            </mat-form-field>
+            <br/>
+            <mat-form-field>
+                <mat-label>Geners</mat-label>
+                <mat-select multiple name="genres" ngModel>
+                    <mat-option *ngFor="let g of genreList" [value]="g">{{g}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <br/>
+
+            <mat-form-field>
+                <mat-label>Stars</mat-label>
+                <mat-chip-list #actorList>
+                    <mat-chip *ngFor="let actor of actors" (removed)="remove(actor)">
+                        {{actor}}
+                        <button matChipRemove>
+                  <mat-icon>cancel</mat-icon>
+                </button>
+                    </mat-chip>
+                    <input placeholder="Stars..." [matChipInputFor]="actorList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)">
+                </mat-chip-list>
+            </mat-form-field>
+
+            <br/>
+            <mat-form-field>
+                <mat-label>Enter a date range</mat-label>
+                <mat-date-range-input [rangePicker]="picker">
+                    <input matStartDate placeholder="Start date" name="fromDate" ngModel>
+                    <input matEndDate placeholder="End date" name="toDate" ngModel>
+                </mat-date-range-input>
+                <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-date-range-picker #picker></mat-date-range-picker>
+            </mat-form-field>
+
+            <br/>
+            <mat-form-field style="width:50%">
+                <mat-label>Duration Min</mat-label>
+                <input matInput placeholder="Enter min play time to Search" type="number" name="minDuration" ngModel>
+            </mat-form-field>
+            <mat-form-field style="width:50%">
+                <mat-label>Max</mat-label>
+                <input matInput min="0" placeholder="Enter max play time to Search" type="number" name="maxDuration" ngModel>
+            </mat-form-field>
+            <br/>
+            <mat-form-field>
+                <mat-label>StoryLine</mat-label>
+                <input matInput min="0" placeholder="Enter freeword to Search" name="storyline" ngModel>
+            </mat-form-field>
+            <br/>
+            <button mat-raised-button color="primary" type="submit" style="margin: 0 4px">Search</button>
+            <button mat-raised-button type="reset">Clear</button>
+            <span style="padding-left:20px;font-weight:bold" *ngIf="movies.length>0">{{movies.length}} Movies Found</span>
+        </div>
     </mat-card>
 </form>
 <div class="movie-list">
     <movie [Movie]="mv" *ngFor="let mv of movies"></movie>
 </div>
 
-<mat-card *ngIf="searchForm.submitted && movies.length == 0" style="text-align: center;">No Match Found</mat-card>
+<mat-card *ngIf="loaded && movies.length == 0" style="text-align: center;">No Match Found</mat-card>

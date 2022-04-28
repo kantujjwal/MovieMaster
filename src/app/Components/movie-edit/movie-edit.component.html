@@ -1,4 +1,66 @@
-<p>movie-edit works!</p>
+<form #movieForm="ngForm" (submit)="save(movieForm.form.value)" (reset)="reset()">
+    <mat-card>
+        <mat-form-field>
+            <mat-label>Title</mat-label>
+            <input matInput placeholder="Enter Movie title" name="title" ngModel>
+        </mat-form-field>
+        <br/>
+        <mat-form-field appearance="fill">
+            <mat-label>Geners</mat-label>
+            <mat-select multiple name="genres" ngModel>
+                <mat-option *ngFor="let g of genreList" [value]="g">{{g}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <br/>
+        <mat-form-field>
+            <mat-label>Poster</mat-label>
+            <input matInput placeholder="Enter Poster Url" name="posterurl" ngModel>
+        </mat-form-field>
+        <br/>
 
-<movie [Movie]="movie">
-</movie>
+        <mat-form-field>
+            <mat-label>Release Date</mat-label>
+            <input matInput [matDatepicker]="picker" name="releaseDate" ngModel>
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <br/>
+        <mat-form-field>
+            <mat-label>Play Time</mat-label>
+            <input type="number" matInput placeholder="Enter Play Time in Minuts" name="duration" ngModel>
+        </mat-form-field>
+        <br/>
+
+        <mat-form-field>
+            <mat-label>Storyline</mat-label>
+            <textarea rows="6" matInput placeholder="Enter Storyline" name="storyline" ngModel></textarea>
+        </mat-form-field>
+        <br/>
+
+        <mat-form-field>
+            <mat-label>Stars</mat-label>
+            <mat-chip-list #actorList>
+                <mat-chip *ngFor="let actor of actors" (removed)="remove(actor)">
+                    {{actor}}
+                    <button matChipRemove>
+                  <mat-icon>cancel</mat-icon>
+                </button>
+                </mat-chip>
+                <input placeholder="New Actor..." [matChipInputFor]="actorList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)">
+            </mat-chip-list>
+        </mat-form-field>
+
+        <br/>
+
+        <mat-form-field>
+            <mat-label>imdb Rating</mat-label>
+            <input type="number" min="0" max="10" step="0.1" matInput placeholder="Enter imdb Rating" name="imdbRating" ngModel>
+        </mat-form-field>
+        <br/>
+
+        <button mat-raised-button color="primary" type="submit" style="margin: 0 4px">{{movieId?'Update':'Create'}}</button>
+        <button mat-raised-button type="reset">Clear</button>
+    </mat-card>
+</form>
