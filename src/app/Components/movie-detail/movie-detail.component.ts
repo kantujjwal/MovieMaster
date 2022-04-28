@@ -25,16 +25,18 @@ export class MovieDetailComponent implements OnInit {
       {
         this.movie = data;
         this.img = data.posterurl.length>0?data.posterurl[0]: '';
+
+        if(data.posterurl.length>1){
+          setInterval(()=>{
+            this.imgIdx++;
+            if(this.movie?.posterurl && this.imgIdx >= this.movie?.posterurl.length ){
+              this.imgIdx = 0;
+            }
+            this.img = this.movie?.posterurl[this.imgIdx]?this.movie?.posterurl[this.imgIdx]:'';
+          },2000);
+        }
       });
     });
-
-    setInterval(()=>{
-      this.imgIdx++;
-      if(this.movie?.posterurl && this.imgIdx >= this.movie?.posterurl.length ){
-        this.imgIdx = 0;
-      }
-      this.img = this.movie?.posterurl[this.imgIdx]?this.movie?.posterurl[this.imgIdx]:'';
-    },2000);
   }
 
   getRating(r:number[]|undefined){
