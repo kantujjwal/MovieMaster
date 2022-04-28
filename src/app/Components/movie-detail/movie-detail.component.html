@@ -3,33 +3,39 @@
         <mat-icon>backspace</mat-icon>
       </button>
     <div>
-        <h2 style="text-align: center;">{{movie?.title}}</h2>
+        <span style="display: inline-flex; width: 100%;padding-bottom: 6px;"><button mat-fab color="primary" (click)="gotoBack()">
+            <mat-icon>backspace</mat-icon>
+          </button>
+        <h2 style="font-size: 32px; margin: auto;">{{movie?.title}}</h2>
+    </span>
         <img class="banner-img" [src]="movie?.posterurl" (error)="setDefImg()">
-        <mat-chip-list>
-            <mat-chip color="primary" *ngFor="let g of movie?.genres">{{g}}</mat-chip>
-        </mat-chip-list>
+        <br/>
+        <div class="genres-list">
+            <mat-chip-list>
+                <mat-chip color="primary" *ngFor="let g of movie?.genres">{{g}}</mat-chip>
+            </mat-chip-list>
+        </div>
+        <br/>
     </div>
 
-    <div style="padding-left:6px">
+    <div style="padding: 60px 6px 0 6px;">
+
+        <h2>User Rating:
+            <div style="display:inline-flex">
+                <mat-icon *ngFor="let item of [].constructor( toInt(getRating(movie?.ratings)))" color="warn">star</mat-icon>
+                <mat-icon *ngIf="(getRating(movie?.ratings) - toInt(getRating(movie?.ratings))) >= .5" color="warn">star_half</mat-icon>
+                <mat-icon *ngFor="let item of [].constructor( 10 - toInt(getRating(movie?.ratings)) - ((getRating(movie?.ratings) - toInt(getRating(movie?.ratings))) >= .5? 1: 0))" color="warn">star_border</mat-icon>
+            </div>
+        </h2>
         <br/>
-        <br/>
-        <div style="display: inline-flex;">
-            <h2>User Rating:
-                <div style="display:inline-flex">
-                    <mat-icon *ngFor="let item of [].constructor( toInt(getRating(movie?.ratings)))" color="warn">star</mat-icon>
-                    <mat-icon *ngIf="(getRating(movie?.ratings) - toInt(getRating(movie?.ratings))) >= .5" color="warn">star_half</mat-icon>
-                    <mat-icon *ngFor="let item of [].constructor( 10 - toInt(getRating(movie?.ratings)) - ((getRating(movie?.ratings) - toInt(getRating(movie?.ratings))) >= .5? 1: 0))" color="warn">star_border</mat-icon>
-                </div>
-            </h2>
-            &nbsp;&nbsp;&nbsp;&nbsp;
-            <h2>IMDB Rating:
-                <div style="display:inline-flex">
-                    <mat-icon *ngFor="let item of [].constructor( toInt((movie && movie.imdbRating)? movie.imdbRating: 0))" color="warn">star</mat-icon>
-                    <mat-icon *ngIf="(((movie && movie.imdbRating)? movie.imdbRating: 0) - toInt((movie && movie.imdbRating)? movie.imdbRating: 0)) >= .5" color="warn">star_half</mat-icon>
-                    <mat-icon *ngFor="let item of [].constructor( 10 - toInt((movie && movie.imdbRating)? movie.imdbRating: 0) - ((((movie && movie.imdbRating)? movie.imdbRating: 0) - toInt((movie && movie.imdbRating)? movie.imdbRating: 0)) >= .5? 1: 0))" color="warn">star_border</mat-icon>
-                </div>
-            </h2>
-        </div>
+        <h2>IMDB Rating:
+            <div style="display:inline-flex">
+                <mat-icon *ngFor="let item of [].constructor( toInt((movie && movie.imdbRating)? movie.imdbRating: 0))" color="warn">star</mat-icon>
+                <mat-icon *ngIf="(((movie && movie.imdbRating)? movie.imdbRating: 0) - toInt((movie && movie.imdbRating)? movie.imdbRating: 0)) >= .5" color="warn">star_half</mat-icon>
+                <mat-icon *ngFor="let item of [].constructor( 10 - toInt((movie && movie.imdbRating)? movie.imdbRating: 0) - ((((movie && movie.imdbRating)? movie.imdbRating: 0) - toInt((movie && movie.imdbRating)? movie.imdbRating: 0)) >= .5? 1: 0))" color="warn">star_border</mat-icon>
+            </div>
+        </h2>
+
         <br/>
         <div style="display: inline-flex;">
             <div>
@@ -40,7 +46,7 @@
                 <mat-icon>calendar_today</mat-icon> {{movie?.releaseDate}}
             </div>
         </div>
-
+        <br/>
         <h2>Stars:
             <mat-chip-list>
                 <mat-chip color="primary" *ngFor="let a of movie?.actors">{{a}}</mat-chip>

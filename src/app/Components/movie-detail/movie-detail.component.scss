@@ -1,9 +1,15 @@
 .banner-img {
-    height: 500px;
+    display: block;
+    width: 520px;
+    height: auto;
 }
 
 #back-btn {
     position: fixed;
     bottom: 20px;
     z-index: 99;
+}
+
+.genres-list {
+    padding-left: 70px !important;
 }
