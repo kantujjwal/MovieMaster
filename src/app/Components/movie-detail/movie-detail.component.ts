@@ -33,7 +33,7 @@ export class MovieDetailComponent implements OnInit {
               this.imgIdx = 0;
             }
             this.currentImg = this.movie?.posterurl[this.imgIdx]?this.movie?.posterurl[this.imgIdx]:'';
-          },2000);
+          },5000);
         }
       });
     });
