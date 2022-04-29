@@ -10,7 +10,7 @@ import {Location} from '@angular/common';
   styleUrls: ['./movie-detail.component.scss']
 })
 export class MovieDetailComponent implements OnInit {
-  img = '';
+  currentImg = '';
   imgIdx = 0;
   movieId: string | undefined;
   movie: Movie | undefined;
@@ -24,7 +24,7 @@ export class MovieDetailComponent implements OnInit {
       this.movieService.getMovie(this.movieId).subscribe((data: any)=>
       {
         this.movie = data;
-        this.img = data.posterurl.length>0?data.posterurl[0]: '';
+        this.currentImg = data.posterurl.length>0?data.posterurl[0]: '';
 
         if(data.posterurl.length>1){
           setInterval(()=>{
@@ -32,7 +32,7 @@ export class MovieDetailComponent implements OnInit {
             if(this.movie?.posterurl && this.imgIdx >= this.movie?.posterurl.length ){
               this.imgIdx = 0;
             }
-            this.img = this.movie?.posterurl[this.imgIdx]?this.movie?.posterurl[this.imgIdx]:'';
+            this.currentImg = this.movie?.posterurl[this.imgIdx]?this.movie?.posterurl[this.imgIdx]:'';
           },2000);
         }
       });
@@ -54,11 +54,11 @@ export class MovieDetailComponent implements OnInit {
   setDefImg(e:any){
     console.log(e);
     if(this.movie){
-    this.img = "https://media.gettyimages.com/vectors/cinema-poster-with-cola-filmstrip-and-clapper-vector-vector-id1244034031?s=612x612";
+    this.currentImg = "https://media.gettyimages.com/vectors/cinema-poster-with-cola-filmstrip-and-clapper-vector-vector-id1244034031?s=612x612";
       }
     }
 
-    setImg(i: string){
-      this.img = i;
+    setCurrentImg(i: string){
+      this.currentImg = i;
     }
 }

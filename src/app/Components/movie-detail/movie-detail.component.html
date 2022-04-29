@@ -1,17 +1,17 @@
 <div style="display: inline-flex;">
-    <button id="back-btn" mat-fab color="primary" (click)="gotoBack()">
+    <button id="back-btn" mat-mini-fab color="primary" (click)="gotoBack()">
         <mat-icon>backspace</mat-icon>
       </button>
     <div>
         <span style="display: inline-flex; width: 100%;padding-bottom: 6px;">
-            <button mat-fab color="primary" (click)="gotoBack()">
+            <button mat-mini-fab color="primary" (click)="gotoBack()">
                 <mat-icon>backspace</mat-icon>
             </button>
             <h2 style="font-size: 32px; margin: auto;">{{movie?.title}}</h2>
         </span>
-        <img class="banner-img" [src]="img" (error)="setDefImg($event)">
+        <img class="banner-img" [src]="currentImg" (error)="setDefImg($event)">
         <div style="justify-content: center; display: flex; margin-top: -24px;">
-            <div class="boolet" [class.active]="x==img" (click)="setImg(x)" *ngFor="let x of movie?.posterurl;">&#8226;</div>
+            <div class="boolet" [class.active]="x==currentImg" (click)="setCurrentImg(x)" *ngFor="let x of movie?.posterurl;">&#8226;</div>
         </div>
         <br/>
         <div class="genres-list">
