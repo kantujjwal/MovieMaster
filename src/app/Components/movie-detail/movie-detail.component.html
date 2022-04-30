@@ -9,7 +9,7 @@
             </button>
             <h2 style="font-size: 32px; margin: auto;">{{movie?.title}}</h2>
         </span>
-        <img class="banner-img" [src]="currentImg" (error)="setDefImg($event)">
+        <img class="banner-img" [src]="currentImg" [style.opacity]="opacity" (error)="setDefImg($event)">
         <div style="justify-content: center; display: flex; margin-top: -24px;">
             <div class="boolet" [class.active]="x==currentImg" (click)="setCurrentImg(x)" *ngFor="let x of movie?.posterurl;">&#8226;</div>
         </div>

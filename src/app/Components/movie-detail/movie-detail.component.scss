@@ -1,8 +1,10 @@
 .banner-img {
     display: block;
-    width: 520px;
-    height: 690px;
-    transition: background-image 1s ease-in-out;
+    width: 370px;
+    height: 500px;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
 }
 
 #back-btn {

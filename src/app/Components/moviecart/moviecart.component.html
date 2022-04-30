@@ -1,0 +1,20 @@
+<h2>Shopping Cart</h2>
+
+<mat-card style="max-width: 800px">
+    <div>
+        <ul>
+            <li *ngFor="let movie of cart.cartItems; let i = index">
+                <div class="cart-item">
+                    <div mat-card-avatar class="example-header-image">
+                        <img [src]="movie.posterurl" (error)="setDefImg(movie)">
+                    </div>
+                    <div class="item-title">{{movie.title}}</div>
+                    <button class="remove-item" mat-mini-fab color="gray" (click)="remove(movie.id)"><mat-icon>clear</mat-icon></button>
+                </div>
+            </li>
+        </ul>
+        <div style="text-align: center;" *ngIf="cart.cartItems.length==0">No Items in Cart</div>
+    </div>
+
+    <button class="cart-order" *ngIf="cart.cartItems.length>0" mat-raised-button color="primary" (click)="order()">Order</button>
+</mat-card>

@@ -38,7 +38,10 @@ export class MovieEditComponent implements OnInit {
 
   save(val:any){
     const payload = {...val, actors :this.actors, year: new Date(val.releaseDate).getFullYear()};
-    payload.posterurl = [payload.posterurl];
+    debugger;
+    if(!Array.isArray(payload.posterurl)){
+      payload.posterurl = [payload.posterurl];
+    }
     console.log(payload);
 
 

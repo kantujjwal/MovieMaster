@@ -16,6 +16,10 @@ import { MovieEditComponent } from './Components/movie-edit/movie-edit.component
 import { FormsModule } from '@angular/forms';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { IntrestCalculaterComponent } from './Components/intrest-calculater/intrest-calculater.component';
+import { MoviecartComponent } from './Components/moviecart/moviecart.component';
+import { LoginComponent } from './Components/login/login.component';
+import { HasRoleDirective } from './directive/has-role.directive';
+import { PageNotFoundComponent } from './Components/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +31,11 @@ import { IntrestCalculaterComponent } from './Components/intrest-calculater/intr
     MovieListComponent,
     MovieDetailComponent,
     MovieEditComponent,
-    IntrestCalculaterComponent
+    IntrestCalculaterComponent,
+    MoviecartComponent,
+    LoginComponent,
+    HasRoleDirective,
+    PageNotFoundComponent
   ],
   imports: [
     FormsModule,

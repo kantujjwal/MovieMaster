@@ -33,3 +33,15 @@ h1.example-app-name {
 mat-sidenav-content {
     padding: 6px;
 }
+
+.right-section {
+    position: absolute;
+    right: 0px;
+    margin-right: 20px;
+    .mat-badge-content {
+        top: -4px !important;
+        right: -7px !important;
+        background-color: red;
+        color: black;
+    }
+}

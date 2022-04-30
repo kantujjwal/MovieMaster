@@ -1,0 +1,203 @@
+:host {
+    height: 100%;
+    position: fixed;
+    display: grid;
+    width: 100%;
+}
+
+.login-page {
+    background: gray;
+    background-image: url("../../../assets/images/Wallpaper.png");
+    height: 100%;
+    background-size: cover;
+}
+
+mat-card {
+    width: calc(100% - 70px - 32px);
+    float: right;
+    text-align: center;
+    height: calc(100% - 32px);
+    max-width: 500px;
+}
+
+mat-form-field {
+    display: block;
+}
+
+.btn-login {
+    width: 100%;
+    margin: 20px 0;
+}
+
+.hint-action {
+    float: right;
+    font-size: smaller;
+    color: blue;
+    cursor: pointer;
+}
+
+.login-form {
+    width: calc(100% - 70px - 32px);
+    padding: 35px;
+    position: absolute;
+    .title {
+        font-size: xx-large;
+        float: left;
+    }
+}
+
+.middle {
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.signup-link {
+    float: left;
+}
+
+.mat-dialog-title {
+    font-size: xx-large;
+}
+
+.plan {
+    background-color: darkslategray;
+    &.first {
+        @media (max-width: 599px) {
+            border-radius: 30px 30px 0 0 !important;
+        }
+        border-radius: 30px 0 0 30px;
+        .plan-title {
+            @media (max-width: 599px) {
+                border-radius: 30px 30px 0 0 !important;
+            }
+            border-radius: 30px 0 0 0;
+        }
+        .plan-details {
+            @media (max-width: 599px) {
+                border-radius: 0 0 0 0 !important;
+            }
+            border-radius: 0 0 0 30px;
+        }
+    }
+    &.middle {
+        @media (max-width: 599px) {
+            margin-top: 10px!important;
+            margin-bottom: 10px!important;
+        }
+        @media (min-width: 600px) {
+            border-right: 0;
+            border-left: 0;
+        }
+    }
+    &.last {
+        @media (max-width: 599px) {
+            border-radius: 0 0 30px 30px !important;
+        }
+        border-radius: 0 30px 30px 0;
+        .plan-title {
+            @media (max-width: 599px) {
+                border-radius: 0 0 0 0 !important;
+            }
+            border-radius: 0 30px 0 0;
+        }
+        .plan-details {
+            @media (max-width: 599px) {
+                border-radius: 0 0 30px 30px !important;
+            }
+            border-radius: 0 0 30px 0;
+        }
+    }
+    &.selected {
+        background-color: lightgray;
+        .plan-title {
+            background-color: blue;
+            color: white;
+        }
+        .plan-details {
+            background-color: lightgray;
+            color: black;
+        }
+        .plan-cost {
+            color: blue;
+        }
+    }
+    .plan-title {
+        background-color: lightgrey;
+        color: black;
+        height: 40px;
+        display: flex;
+        align-items: flex-start;
+        span {
+            width: 100%;
+            align-self: center;
+            text-align: center;
+        }
+    }
+    .plan-details {
+        padding: 20px;
+        background-color: darkslategray;
+        color: white;
+        font-size: small;
+        .plan-edition {
+            padding-top: 20px;
+            font-size: 14px;
+        }
+        .plan-cost {
+            padding: 10px 0;
+            font-size: 28px;
+        }
+        .plan-feature {
+            padding-left: 15px;
+            list-style-type: none;
+            mat-icon {
+                font-size: 12px;
+            }
+        }
+        .plan-contact-btn {
+            width: 100%;
+        }
+    }
+    border: 1px solid black;
+}
+
+.dialog-header {
+    text-align: center;
+}
+
+.link {
+    cursor: pointer;
+    color: blue;
+    opacity: 1;
+}
+
+.invitation-section {
+    padding: 35px;
+}
+
+.invitation-title {
+    font-size: 42px;
+    font-weight: bold;
+}
+
+.invited-by {
+    font-weight: bold;
+}
+
+.invitation-message {
+    text-align: left;
+    color: blue;
+    font-weight: 500;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.invitation-warning {
+    text-align: left;
+    background: darkorange;
+    padding: 14px;
+}
+
+.warning-title {
+    font-weight: bold;
+}

@@ -24,3 +24,9 @@ export interface Movie{
     imdbRating: number,
     posterurl: string[]
 }
+
+export interface CartItem{
+    title: string,
+    id: string,
+    posterurl: string[]
+}

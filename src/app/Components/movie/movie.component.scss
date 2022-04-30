@@ -25,6 +25,9 @@
 
 .banner {
     height: 250px;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
 }
 
 .mat-card-content {
@@ -40,4 +43,41 @@
 
 .hand {
     cursor: pointer !important;
+}
+
+mat-card-footer {
+    display: none;
+    opacity: 0;
+}
+
+.mat-card:hover {
+    transition-property: all;
+    transition-delay: 1s !important;
+    transform: scale(1.1) !important;
+    box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.4) !important;
+    z-index: 3 !important;
+    border-color: #007bff !important;
+    mat-card-footer {
+        transition-property: all;
+        transition-delay: 1s !important;
+        opacity: 1 !important;
+        display: block !important;
+    }
+    mat-card-content {
+        .story {
+            -webkit-line-clamp: 5 !important;
+        }
+    }
+}
+
+mat-card-content {
+    .story {
+        height: 100%;
+        text-align: justify;
+        display: -webkit-box;
+        -webkit-line-clamp: 7;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
 }

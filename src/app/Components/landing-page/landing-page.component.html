@@ -1,7 +1,15 @@
-<div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
+<div *ngIf="this.auth.checkLogin()" class="example-container" [class.example-is-mobile]="mobileQuery.matches">
     <mat-toolbar color="primary" class="example-toolbar">
         <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
         <h1 class="example-app-name">MovieMaster</h1>
+        <div class="right-section">
+            <button class="cart-btn" mat-mini-fab color="primary" [matBadge]="cart.cartItems.length" [matBadgeHidden]="cart.cartItems.length==0" (click)="goToCart()">
+                <mat-icon>shopping_cart</mat-icon>
+            </button>
+            <button mat-mini-fab style="margin-left: 10px;" color="primary" [matMenuTriggerFor]="userMenu">
+              <mat-icon>person</mat-icon>
+            </button>
+        </div>
     </mat-toolbar>
 
     <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
@@ -16,3 +24,10 @@
         </mat-sidenav-content>
     </mat-sidenav-container>
 </div>
+
+<div *ngIf="!this.auth.checkLogin()">
+    <router-outlet></router-outlet>
+</div>
+<mat-menu #userMenu="matMenu">
+    <button mat-menu-item (click)="logout()">Logout</button>
+</mat-menu>

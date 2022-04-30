@@ -14,6 +14,8 @@ export class MovieDetailComponent implements OnInit {
   imgIdx = 0;
   movieId: string | undefined;
   movie: Movie | undefined;
+  refreshIntervalId:any;
+  opacity=1;
   constructor(private route: ActivatedRoute,
     private movieService: MovieService,
     private _location: Location) { }
@@ -27,13 +29,17 @@ export class MovieDetailComponent implements OnInit {
         this.currentImg = data.posterurl.length>0?data.posterurl[0]: '';
 
         if(data.posterurl.length>1){
-          setInterval(()=>{
+          this.refreshIntervalId = setInterval(()=>{
             this.imgIdx++;
             if(this.movie?.posterurl && this.imgIdx >= this.movie?.posterurl.length ){
               this.imgIdx = 0;
             }
+            this.opacity = 0;
             this.currentImg = this.movie?.posterurl[this.imgIdx]?this.movie?.posterurl[this.imgIdx]:'';
-          },5000);
+            setTimeout(()=>
+            this.opacity = 1
+            ,300)
+           },5000);
         }
       });
     });
@@ -59,6 +65,11 @@ export class MovieDetailComponent implements OnInit {
     }
 
     setCurrentImg(i: string){
+      this.opacity = 0;
       this.currentImg = i;
+      setTimeout(()=>
+      this.opacity = 1
+      ,300)
+      clearInterval(this.refreshIntervalId);
     }
 }

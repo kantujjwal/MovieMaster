@@ -1,0 +1,32 @@
+.example-header-image {
+    img {
+        height: 100%;
+        border-radius: 50%;
+        width: 100%;
+    }
+}
+
+.cart-item {
+    display: inline-flex;
+}
+
+.remove-item {
+    position: absolute;
+    right: 14px;
+}
+
+.item-title {
+    padding: 8px;
+}
+
+ul {
+    padding: 0;
+    li {
+        list-style: none;
+    }
+}
+
+.cart-order {
+    float: right;
+    margin-top: 20px;
+}
