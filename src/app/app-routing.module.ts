@@ -11,9 +11,10 @@ import { LoginComponent } from './Components/login/login.component';
 import { AuthUserGuard } from './guard/auth-user.guard';
 import { AuthAdminGuard } from './guard/auth-admin.guard';
 import { PageNotFoundComponent } from './Components/page-not-found/page-not-found.component';
+import { OrderDetailComponent } from "./Components/order-detail/OrderDetailComponent";
 
 const routes: Routes = [{ path:'', redirectTo: '/latest-movies', pathMatch:'full'},
-{ path:'latest-movies', component: LatestMoviesComponent },
+{ path:'latest-movies', component: LatestMoviesComponent, canActivate: [AuthUserGuard] },
 { path:'contactus', component: ContactUsComponent, canActivate: [AuthUserGuard] },
 { path:'movie-list', component: MovieListComponent, canActivate: [AuthUserGuard]  },
 { path:'intrest-calc', component: IntrestCalculaterComponent, canActivate: [AuthAdminGuard]  },
@@ -21,6 +22,7 @@ const routes: Routes = [{ path:'', redirectTo: '/latest-movies', pathMatch:'full
 { path:'movie-edit/:id', component: MovieEditComponent, canActivate: [AuthAdminGuard]  },
 { path:'new-movie', component: MovieEditComponent, canActivate: [AuthAdminGuard]  },
 { path:'movie-cart', component: MoviecartComponent, canActivate: [AuthUserGuard] },
+{ path:'orders', component: OrderDetailComponent, canActivate: [AuthUserGuard] },
 { path:'login', component: LoginComponent},
 { path:'**', component: PageNotFoundComponent}];
 

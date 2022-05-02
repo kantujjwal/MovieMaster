@@ -11,10 +11,10 @@ export class AuthUserGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      if (this._authService.isLogin && (this._authService.getRoles().includes("USER") || this._authService.getRoles().includes("ADMIN"))) {
+      if (this._authService.isLogin && (this._authService.getRoles()?.includes("USER") || this._authService.getRoles()?.includes("ADMIN"))) {
         return true;
     } else {
-        this._router.navigate(['/login'])
+        this._router.navigate(['/page-not-found'])
         return false
     }
   }

@@ -1,14 +1,4 @@
-import { AnyCatcher } from "rxjs/internal/AnyCatcher";
-
 export interface Movie{
-    // id: number,
-    // name: string,
-    // logo: string,
-    // bannerImg: string,
-    // releaseDate: Date,
-    // tagLine: string,
-    // description: string
-
     title: string,
     year: string,
     genres: string[],
@@ -22,11 +12,17 @@ export interface Movie{
     storyline: string,
     actors: string[],
     imdbRating: number,
-    posterurl: string[]
+    posterurl: string[],
+    stock: number,
+    rate: number,
+    currentStock: number
 }
 
 export interface CartItem{
     title: string,
     id: string,
-    posterurl: string[]
+    days: number,
+    posterurl: string[],
+    stock: number,
+    rate: number
 }

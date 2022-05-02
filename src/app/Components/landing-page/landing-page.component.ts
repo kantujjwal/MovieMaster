@@ -14,10 +14,10 @@ export class LandingPageComponent implements OnInit, OnDestroy {
   menuNav:any[] = [];
   
   adminNav = [{name:"Latest Movies", link:'latest-movies'}, {name:"Contact Us", link:'contactus'},
-  {name:"Movie List", link:'movie-list'}, {name:"Add Movie", link:'new-movie'}, {name:"Intrest Calcultor", link:'intrest-calc'}]
+  {name:"Movie List", link:'movie-list'}, {name:"Add Movie", link:'new-movie'}, {name:"Orders", link:'orders'}, {name:"Intrest Calcultor", link:'intrest-calc'}]
 
   userNasv = [{name:"Latest Movies", link:'latest-movies'}, {name:"Contact Us", link:'contactus'},
-  {name:"Movie List", link:'movie-list'}]
+  {name:"Movie List", link:'movie-list'}, {name:"My Orders", link:'orders'}]
 
   private _mobileQueryListener: () => void;
 
@@ -30,7 +30,7 @@ export class LandingPageComponent implements OnInit, OnDestroy {
     if(!this.auth.checkLogin()){
       this._router.navigate(['login']);
     }else{
-      this.menuNav = this.auth.getRoles().includes("ADMIN")? this.adminNav: this.userNasv;
+      this.menuNav = this.auth.getRoles()?.includes("ADMIN")? this.adminNav: this.userNasv;
     }
   }
 

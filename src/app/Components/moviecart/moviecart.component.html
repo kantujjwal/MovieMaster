@@ -1,20 +1,70 @@
 <h2>Shopping Cart</h2>
 
-<mat-card style="max-width: 800px">
-    <div>
-        <ul>
-            <li *ngFor="let movie of cart.cartItems; let i = index">
-                <div class="cart-item">
-                    <div mat-card-avatar class="example-header-image">
-                        <img [src]="movie.posterurl" (error)="setDefImg(movie)">
-                    </div>
-                    <div class="item-title">{{movie.title}}</div>
-                    <button class="remove-item" mat-mini-fab color="gray" (click)="remove(movie.id)"><mat-icon>clear</mat-icon></button>
+<mat-stepper [linear]="true" #stepper>
+    <mat-step label="Order Items">
+        <mat-card style="max-width: 800px">
+            <div>
+                <ul>
+                    <li *ngFor="let movie of cart.cartItems; let i = index">
+                        <div class="cart-item">
+                            <div mat-card-avatar class="example-header-image">
+                                <img [src]="movie.posterurl" (error)="setDefImg(movie)">
+                            </div>
+                            <div class="item-title">{{movie.title}}</div>
+                            <div class="right-panal">
+                                {{movie.rate}}
+                                <mat-form-field>
+                                    <input matInput type="number" name="days" min="1" max="30" [(ngModel)]="movie.days">
+                                </mat-form-field>
+                                {{movie.days*movie.rate}}
+                                <button class="remove-item" mat-mini-fab color="gray" (click)="remove(movie.id)"><mat-icon>clear</mat-icon></button>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="right-panal" style="padding-right: 40px">
+                    Total: {{getTotal()}}
                 </div>
-            </li>
-        </ul>
-        <div style="text-align: center;" *ngIf="cart.cartItems.length==0">No Items in Cart</div>
-    </div>
+                <div style="text-align: center;" *ngIf="cart.cartItems.length==0">No Items in Cart</div>
+            </div>
 
-    <button class="cart-order" *ngIf="cart.cartItems.length>0" mat-raised-button color="primary" (click)="order()">Order</button>
-</mat-card>
+            <button mat-button matStepperNext *ngIf="cart.cartItems.length>0">Next</button>
+            <!-- <button class="cart-order" *ngIf="cart.cartItems.length>0" mat-raised-button color="primary" (click)="order()">Order</button> -->
+        </mat-card>
+    </mat-step>
+    <mat-step [stepControl]="addressFormGroup" label="Fill out your address">
+        <form [formGroup]="addressFormGroup">
+            <mat-form-field>
+                <mat-label>Shipping Address</mat-label>
+                <input matInput formControlName="shippingAddress" placeholder="Shipping Address" required>
+            </mat-form-field>
+            <br/>
+            <mat-form-field>
+                <mat-label>Billing Address</mat-label>
+                <input matInput formControlName="billingAddress" placeholder="Billing Address" required>
+            </mat-form-field>
+            <br/>
+            <mat-form-field>
+                <mat-label>Contact Number</mat-label>
+                <input matInput formControlName="contactNo" type="phone" required>
+            </mat-form-field>
+            <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button matStepperNext>Next</button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step label="Payment">
+        <form>
+
+            <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button matStepperNext (click)="submitOrder()">Order</button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step>
+        <ng-template matStepLabel>Done</ng-template>
+        <p style="text-align: center;color:green">Your order is successfully placed.</p>
+    </mat-step>
+</mat-stepper>

@@ -22,7 +22,7 @@ export class HasRoleDirective {
   }
 
   private updateView() {
-    const marchingRoles = this.roles.filter(role => this.currentUser.roles.includes(role));
+    const marchingRoles = this.roles.filter(role => this.currentUser?.roles.includes(role));
     if (marchingRoles && marchingRoles.length > 0) {
       if(this.el.nativeElement.class && this.el.nativeElement.class.includes("access-denied")){
         setTimeout(()=>{

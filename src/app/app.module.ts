@@ -13,13 +13,14 @@ import { MovieComponent } from './Components/movie/movie.component';
 import { MovieListComponent } from './Components/movie-list/movie-list.component';
 import { MovieDetailComponent } from './Components/movie-detail/movie-detail.component';
 import { MovieEditComponent } from './Components/movie-edit/movie-edit.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { IntrestCalculaterComponent } from './Components/intrest-calculater/intrest-calculater.component';
 import { MoviecartComponent } from './Components/moviecart/moviecart.component';
 import { LoginComponent } from './Components/login/login.component';
 import { HasRoleDirective } from './directive/has-role.directive';
 import { PageNotFoundComponent } from './Components/page-not-found/page-not-found.component';
+import { OrderDetailComponent } from "./Components/order-detail/OrderDetailComponent";
 
 @NgModule({
   declarations: [
@@ -35,10 +36,12 @@ import { PageNotFoundComponent } from './Components/page-not-found/page-not-foun
     MoviecartComponent,
     LoginComponent,
     HasRoleDirective,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    OrderDetailComponent
   ],
   imports: [
     FormsModule,
+    ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,

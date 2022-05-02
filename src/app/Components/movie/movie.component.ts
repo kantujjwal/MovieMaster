@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { CartService } from 'src/app/Services/cart.service';
 import { Movie } from 'src/app/Models/movie.modal';
 import { MovieService } from 'src/app/Services/movie.service';
+import { TokenStorageService } from 'src/app/Services/token-storage.service';
+import { AuthService } from 'src/app/Services/auth.service';
 
 @Component({
   selector: 'movie',
@@ -17,13 +19,16 @@ export class MovieComponent implements OnInit {
   imgIdx = 0;
   refreshIntervalId: any;
   opacity = 1;
+  isAdmin = false;
   constructor(private _router: Router,
     private movieService: MovieService,
-    private cart: CartService) { }
+    private cart: CartService,
+    private auth: AuthService) { }
 
   ngOnInit(): void {
     this.currentImg = this.Movie?.posterurl[this.imgIdx]?this.Movie?.posterurl[this.imgIdx]:'';
     this.movieLogo = this.Movie?.posterurl[0]?this.Movie?.posterurl[0]:'';
+    this.isAdmin = this.auth.getRoles()?.includes("ADMIN")?true:false;
   }
 
   gotoMovieDetails(id: string){
@@ -75,7 +80,7 @@ export class MovieComponent implements OnInit {
   }
 
   addToCart(item: Movie){
-    this.cart.add({id:item.id, title: item.title, posterurl: item.posterurl});
+    this.cart.add({id:item.id, title: item.title, days:1, posterurl: item.posterurl, stock: item.stock, rate: item.rate});
   }
 
   isInCart(id: string){

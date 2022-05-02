@@ -1,5 +1,5 @@
 <div class="login-page">
-    <mat-card *ngIf="isLoginVisible">
+    <mat-card>
         <mat-card-content>
             <form class="login-form middle" #loginForm="ngForm" (ngSubmit)="login()">
                 <h2 class="title">Login</h2>
@@ -16,8 +16,8 @@
                     <mat-error> Please provide a valid password </mat-error>
                 </mat-form-field>
                 <button mat-raised-button class="btn-login" color="primary" [disabled]="!loginForm.form.valid">
-          Login
-        </button>
+                    Login
+                </button>
             </form>
         </mat-card-content>
     </mat-card>

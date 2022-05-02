@@ -1,0 +1,42 @@
+<mat-accordion>
+    <mat-expansion-panel *ngFor="let order of orders" (opened)="order.opened= true" (closed)="order.opened = false">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                <span *ngIf="isAdmin">Order By: {{order.UserId}}</span> &nbsp;&nbsp;&nbsp;Date: {{order.OrderDate | date}}
+            </mat-panel-title>
+            <mat-panel-description>
+                DeliveryStatus: {{order.DeliveryStatus}} &nbsp;&nbsp;&nbsp; PaymentStatus: {{order.PaymentStatus}} &nbsp; Mode: {{order.PaymentMode}}
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <span>Amount: {{order.Amount}}&nbsp;&nbsp;&nbsp; PaidAmount: {{order.PaidAmount }}</span>
+        <br/> DeliveryAddress: {{order.DeliveryAddress}}
+        <br>BillingAddress:{{order.BillingAddress}}
+        <br> ContactNo: {{order.ContactNo}}
+        <br/>
+        <p>Items</p>
+        <hr/>
+        <ul>
+            <li *ngFor="let movie of order.Items">
+                <div class="cart-item">
+                    <div mat-card-avatar class="example-header-image">
+                        <img [src]="movie.posterurl" (error)="setDefImg(movie)">
+                    </div>
+                    <div class="item-title">{{movie.title}}</div>
+                    <div class="right-panal">
+                        {{movie.rate}}
+                        <mat-form-field>
+                            <input matInput type="number" name="days" min="1" max="30" [(ngModel)]="movie.scheduledays">
+                        </mat-form-field>
+                        {{movie.scheduledays*movie.rate}}
+                        <button class="remove-item" mat-mini-fab color="gray" (click)="remove(movie.id)"><mat-icon>clear</mat-icon></button>
+                    </div>
+                </div>
+            </li>
+        </ul>
+
+        <div class="right-panal" style="padding-right: 40px">
+            Total: {{getTotal(order)}}
+        </div>
+        <br/>
+    </mat-expansion-panel>
+</mat-accordion>

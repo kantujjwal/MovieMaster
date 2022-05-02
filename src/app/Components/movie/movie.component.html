@@ -4,7 +4,10 @@
             <img [src]="movieLogo" (error)="setDefLogo()">
         </div>
         <mat-card-title>{{Movie.title}}</mat-card-title>
-        <mat-card-subtitle>{{Movie.year}}</mat-card-subtitle>
+        <mat-card-subtitle>{{Movie.year}}
+            <span class="movie-msg" *ngIf="Movie.stock == 0">Comming Soon</span>
+            <span class="movie-msg" *ngIf="Movie.stock>0 && Movie.currentStock == 0">Stock Unavailable</span>
+        </mat-card-subtitle>
     </mat-card-header>
     <img class="banner hand" [src]="currentImg" [style.opacity]="opacity" (error)="setDefImg()" alt="Photo of a {{Movie.title}}" (click)="gotoMovieDetails(Movie.id)">
     <mat-card-content>
@@ -15,11 +18,11 @@
     <mat-card-footer>
         <mat-card-actions>
             <!-- <button mat-raised-button color="primary" (click)="gotoMovieDetails(Movie.id)">Details</button> -->
-            <button mat-mini-fab color="primary" (click)="gotoMovieEdit(Movie.id)" [hasRole]="['ADMIN']"><mat-icon>edit</mat-icon></button>
-            <button mat-mini-fab color="grey" style="margin-left: 2px" (click)="addToCart(Movie)" [disabled]="isInCart(Movie.id)">
+            <button mat-mini-fab color="primary" (click)="gotoMovieEdit(Movie.id)" *ngIf="isAdmin"><mat-icon>edit</mat-icon></button>
+            <button mat-mini-fab color="grey" style="margin-left: 2px" (click)="addToCart(Movie)" [disabled]="isInCart(Movie.id) || Movie.stock==0 || Movie.currentStock == 0">
                 <mat-icon>add_shopping_cart</mat-icon>
             </button>
-            <button style="float: right;" mat-mini-fab color="warn" (click)="deleteMovie(Movie.id)" [hasRole]="['ADMIN']"><mat-icon>delete</mat-icon></button>
+            <button style="float: right;" mat-mini-fab color="warn" (click)="deleteMovie(Movie.id)" *ngIf="isAdmin"><mat-icon>delete</mat-icon></button>
         </mat-card-actions>
     </mat-card-footer>
 </mat-card>
