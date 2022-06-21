@@ -1,4 +1,4 @@
-<div style="max-width: 400px;">
+<!-- <div style="max-width: 400px;">
     <label>E-mail:</label>
     <a href="mailto: ujjwal2154@gmail.com">
         <mat-icon style="float: right;">mail_outline</mat-icon>
@@ -22,3 +22,47 @@
         <mat-icon style="float: right;">Skype</mat-icon>
     </a>
 </div>
+ -->
+<div class="mat-elevation-z8">
+    <table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8">
+
+        <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+        <!-- <ng-container *ngFor="let p of displayedColumns" matColumnDef="{{p}}">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>
+                <mat-form-field appearance="outline">
+                    <input matInput placeholder="{{p}}">
+                </mat-form-field>
+            </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element[p]}} </mat-cell>
+        </ng-container> -->
+        <ng-container *ngFor="let p of displayedColumns" matColumnDef="{{p}}">
+            <!-- <th mat-header-cell *matHeaderCellDef mat-sort-header> {{p}}
+                <mat-icon>filter_list</mat-icon>
+            </th> -->
+            <th mat-header-cell *matHeaderCellDef>
+                <span style="display:inline-flex">
+                    <mat-form-field>
+                        <input #f matInput class="form-field" placeholder="{{p}}" (keyup.enter)="filterData(p,f.value)">
+                        <button mat-button *ngIf="f.value" (click)="f.value='';filterData(p,f.value)" matSuffix mat-icon-button aria-label="Clear">
+                            <mat-icon>close</mat-icon>
+                          </button>
+                    </mat-form-field>
+                    <button mat-button (click)="sortData(p)" matSuffix mat-icon-button aria-label="sort">
+
+                        <mat-icon *ngIf="sortSetting.key == p && sortSetting.asc">keyboard_arrow_up</mat-icon>
+                        <mat-icon *ngIf="sortSetting.key != p || !sortSetting.asc">keyboard_arrow_down</mat-icon>
+                    </button>
+                </span>
+            </th>
+            <td mat-cell *matCellDef="let element"> {{element[p]}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements">
+    </mat-paginator>
+</div>
+<br/> {{csvToJson(csv) | json}}

@@ -8,7 +8,7 @@ import { MaterialModule } from './material.module';
 import { LandingPageComponent } from './Components/landing-page/landing-page.component';
 import { LatestMoviesComponent } from './Components/latest-movies/latest-movies.component';
 import { ContactUsComponent } from './Components/contact-us/contact-us.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MovieComponent } from './Components/movie/movie.component';
 import { MovieListComponent } from './Components/movie-list/movie-list.component';
 import { MovieDetailComponent } from './Components/movie-detail/movie-detail.component';
@@ -21,6 +21,7 @@ import { LoginComponent } from './Components/login/login.component';
 import { HasRoleDirective } from './directive/has-role.directive';
 import { PageNotFoundComponent } from './Components/page-not-found/page-not-found.component';
 import { OrderDetailComponent } from "./Components/order-detail/OrderDetailComponent";
+import { LogInterceptor } from './interceptor/log.interceptor';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { OrderDetailComponent } from "./Components/order-detail/OrderDetailCompo
     MaterialModule,
     HttpClientModule
   ],
-  providers: [{provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'legacy'}}],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: LogInterceptor, multi: true },
+    {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'legacy'}}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
