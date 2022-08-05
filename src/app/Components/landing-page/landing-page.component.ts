@@ -1,5 +1,5 @@
 import { MediaMatcher } from '@angular/cdk/layout';
-import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CartService } from 'src/app/Services/cart.service';
 import { AuthService } from 'src/app/Services/auth.service';
@@ -35,6 +35,14 @@ export class LandingPageComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+  }
+
+  @HostListener('window:storage', ['$event'])
+  onMessage(event: any) {
+    if (event.storageArea != localStorage) return;
+    if (event.key === this.cart.CART_KEY) {
+      this.cart.loadCart();
+    }
   }
 
   ngOnDestroy(): void {
